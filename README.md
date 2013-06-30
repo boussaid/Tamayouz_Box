@@ -1,7 +1,11 @@
 //XenForo Addon: addon-Tamayouz
+
 //Addon by: Boussaid Mustafa
+
 //Copyright 2013 http://www.shababadrar.net/vb
+
 //Support at: http://www.xf-ar.com
+
 //All rights reserved
 *******************************************/
 
