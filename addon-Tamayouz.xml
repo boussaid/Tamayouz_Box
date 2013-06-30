@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="Tamayouz" title="صندوق التميز" version_string="2.0" version_id="2" url="http://www.shababadrar.net" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation>
+    <navigation navigation_id="Tamayouz" parent_navigation_id="options" display_order="8000" link="options/list/Tamayouz" admin_permission_id="option" debug_only="0" hide_no_children="0"/>
+  </admin_navigation>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates>
+    <template title="about_tam"><![CDATA[<div id="copyright" style="text-align:center;margin-top:20px;">
+<img src="styles/default/xenforo/smilies/thumbsup.png"  alt='' />&nbsp;  
+<a href="http://www.xf-ar.com/" target="_blank" class="Tooltip" title="برمجة بوسعيد مصطفى">:: XF-AR FORUM ::</a> &nbsp;
+<img src="styles/default/xenforo/smilies/thumbsup.png"  alt='' />
+</div>]]></template>
+  </admin_templates>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="Tamayouz_listen" callback_method="loclass" active="1" description=""/>
+    <listener event_id="template_create" execute_order="10" callback_class="Tamayouz_listen" callback_method="template_create" active="1" description=""/>
+    <listener event_id="template_hook" execute_order="10" callback_class="Tamayouz_listen" callback_method="template_tamayouz" active="1" description=""/>
+  </code_event_listeners>
+  <cron>
+    <entry entry_id="runTam" cron_class="tamayouz_CronEntry_Cache" cron_method="runCron" active="1"><![CDATA[{"day_type":"dow","dow":["-1"],"hours":["0","6","11","16","21"],"minutes":["0"]}]]></entry>
+  </cron>
+  <email_templates/>
+  <optiongroups>
+    <group group_id="Tamayouz" display_order="1" debug_only="0"/>
+    <option option_id="about_tamayouz" edit_format="template" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>about_tam</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="1000"/>
+    </option>
+    <option option_id="altmiz_group1" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>المشرف المميز</default_value>
+      <edit_format_params>size=20</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="410"/>
+    </option>
+    <option option_id="medal_1" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>styles/img/w1.gif</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="310"/>
+    </option>
+    <option option_id="medal_2" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>styles/img/w2.gif</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="430"/>
+    </option>
+    <option option_id="medal_3" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>styles/img/w4.gif</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="220"/>
+    </option>
+    <option option_id="medal_on" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>0</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="30"/>
+    </option>
+    <option option_id="pest_all_perday_fourms_out" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>size=30</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="110"/>
+    </option>
+    <option option_id="pest_all_perday_how" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>2</default_value>
+      <edit_format_params>1=عدد الردود
+2=عدد المشاهدات</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="200"/>
+    </option>
+    <option option_id="pest_all_perday_modman" edit_format="callback" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>XenForo_Option_UserGroupChooser::renderSelect</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="420"/>
+    </option>
+    <option option_id="pest_all_perday_name" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value>صندوق التميز التلقائي</default_value>
+      <edit_format_params>size=30</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="100"/>
+    </option>
+    <option option_id="pest_all_perday_onoff" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="1"/>
+    </option>
+    <option option_id="pest_all_perday_users" edit_format="callback" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params>XenForo_Option_UserGroupChooser::renderSelect</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="300"/>
+    </option>
+    <option option_id="pest_all_theard_time" edit_format="select" data_type="string" can_backup="1">
+      <default_value>43200</default_value>
+      <edit_format_params>10800=3 ساعات
+21600= 6 ساعات
+43200= 12 ساعة
+86400= يــوم
+604800= أسبوع
+1209600= اسبوعين
+2419200= شهر</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="120"/>
+    </option>
+    <option option_id="tam_cut" edit_format="spinbox" data_type="numeric" can_backup="1">
+      <default_value>40</default_value>
+      <edit_format_params>size=2
+max=80
+min=10</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="210"/>
+    </option>
+    <option option_id="tam_pos" edit_format="radio" data_type="string" can_backup="1">
+      <default_value>20</default_value>
+      <edit_format_params>10=شكل 1 (معلومات مفصلة مع صورة كبيرة )
+20=شكل 2 (معلومات مختصرة مع صورة مصغرة )</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="Tamayouz" display_order="20"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions>
+      <permission permission_group_id="general" permission_id="tmz_cansee" permission_type="flag" default_value="unset" interface_group_id="generalPermissions" display_order="12000"/>
+    </permissions>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="admin_navigation_Tamayouz" version_id="1" version_string="1.1"><![CDATA[خيارات صندوق التميز]]></phrase>
+    <phrase title="cron_entry_runTam" version_id="1" version_string="1.1"><![CDATA[تحديث صندوق التميز التلقائي]]></phrase>
+    <phrase title="option_about_tamayouz" version_id="1" version_string="1.0.0"><![CDATA[حقوق الهاك]]></phrase>
+    <phrase title="option_about_tamayouz_explain" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_altmiz_group1" version_id="1" version_string="1.0.0"><![CDATA[عنوان المجموعة الاولى]]></phrase>
+    <phrase title="option_altmiz_group1_explain" version_id="1" version_string="1.0.0"><![CDATA[الاسم الذي تريده يظهر فوق المجموعة الاولى مثال ( المشرف المميز)]]></phrase>
+    <phrase title="option_group_Tamayouz" version_id="1" version_string="1.1"><![CDATA[خيارات صندوق التميز الاوتوماتيكي]]></phrase>
+    <phrase title="option_group_Tamayouz_description" version_id="1" version_string="1.1"><![CDATA[]]></phrase>
+    <phrase title="option_medal_1" version_id="1" version_string="1.0.1"><![CDATA[صورة الوسام]]></phrase>
+    <phrase title="option_medal_1_explain" version_id="1" version_string="1.0.1"><![CDATA[]]></phrase>
+    <phrase title="option_medal_2" version_id="1" version_string="1.0.1"><![CDATA[صورة الوسام]]></phrase>
+    <phrase title="option_medal_2_explain" version_id="1" version_string="1.0.1"><![CDATA[]]></phrase>
+    <phrase title="option_medal_3" version_id="1" version_string="1.0.1"><![CDATA[صورة الوسام]]></phrase>
+    <phrase title="option_medal_3_explain" version_id="1" version_string="1.0.1"><![CDATA[]]></phrase>
+    <phrase title="option_medal_on" version_id="1" version_string="1.0.1"><![CDATA[تفعيل الأوسمة ؟]]></phrase>
+    <phrase title="option_medal_on_explain" version_id="1" version_string="1.0.1"><![CDATA[عطل هذا الخيار إذا كنت لا تريد تفعيل الأوسمة]]></phrase>
+    <phrase title="option_pest_all_perday_fourms_out" version_id="1" version_string="1.0.0"><![CDATA[اقسام لايشملها الموضوع المميز]]></phrase>
+    <phrase title="option_pest_all_perday_fourms_out_explain" version_id="1" version_string="1.0.0"><![CDATA[ضع هنا ارقام  الاقسام التى لن يظهر منها مواضيع في التميز وافصل بين كل رقم والأخر بفاصله مثال<br />
+6,9,8]]></phrase>
+    <phrase title="option_pest_all_perday_how" version_id="1" version_string="1.0.0"><![CDATA[الموضوع المميز]]></phrase>
+    <phrase title="option_pest_all_perday_how_explain" version_id="1" version_string="1.0.0"><![CDATA[حدد الطريقه التى يتم اختيار الموضوع المميز فيها]]></phrase>
+    <phrase title="option_pest_all_perday_modman" version_id="1" version_string="1.0.0"><![CDATA[اختر مجموعة ( الاولى )]]></phrase>
+    <phrase title="option_pest_all_perday_modman_explain" version_id="1" version_string="1.0.0"><![CDATA[هذه الخانه مخصصه لرقم مجموعه المشرفين الإفتراضيه بالمنتدى وهي (4)
+في حال أردت استخدامها لمجموعه أخرى قم بتغيير عنوان المجموعة ( في حال كنت لست بحاجه لها اتركها فارغة)]]></phrase>
+    <phrase title="option_pest_all_perday_name" version_id="1" version_string="1.0.0"><![CDATA[عنوان صندوق التميز]]></phrase>
+    <phrase title="option_pest_all_perday_name_explain" version_id="1" version_string="1.0.0"><![CDATA[ضع هنا العنوان الذي تريد ظهوره في صندوق التميز مثال : المتميزون خلال اليوم]]></phrase>
+    <phrase title="option_pest_all_perday_onoff" version_id="1" version_string="1.0.0"><![CDATA[تفعيل المنتج]]></phrase>
+    <phrase title="option_pest_all_perday_onoff_explain" version_id="1" version_string="1.0.0"><![CDATA[(نعم) لتشغيل الهاك وظهوره (لا) سوف يتم ايقافه بشكل كامل]]></phrase>
+    <phrase title="option_pest_all_perday_users" version_id="1" version_string="1.0.0"><![CDATA[اختر مجموعة الاعضاء]]></phrase>
+    <phrase title="option_pest_all_perday_users_explain" version_id="1" version_string="1.0.0"><![CDATA[في العادة تكون رقم مجموعه الاعضاء هي ( 2 ) لكن في حال كان غير ذالك قم بتغييرها هنا]]></phrase>
+    <phrase title="option_pest_all_theard_time" version_id="1" version_string="1.0.0"><![CDATA[وقت الموضوع والاعضاء المميزين]]></phrase>
+    <phrase title="option_pest_all_theard_time_explain" version_id="1" version_string="1.0.1"><![CDATA[حدد المده التى تريد وضعها ليتم اختيار الموضوع والاعضاء المميزين]]></phrase>
+    <phrase title="option_tam_cut" version_id="1" version_string="1.0.0"><![CDATA[قطع عنوان الموضوع]]></phrase>
+    <phrase title="option_tam_cut_explain" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
+    <phrase title="option_tam_pos" version_id="1" version_string="1.0.0"><![CDATA[طريقة العرض]]></phrase>
+    <phrase title="option_tam_pos_explain" version_id="1" version_string="1.0.0"><![CDATA[حدد الطريقة التي تريد عرض صندوق التميز بها]]></phrase>
+    <phrase title="permission_general_tmz_cansee" version_id="1" version_string="1.0.0"><![CDATA[يمكنه مشاهدة صندوق التميز]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="tama_box" version_id="1" version_string="1.1"><![CDATA[<xen:if is="{$tamz.cansee}">
+<xen:require css="tama_box.css" />
+<xen:include template="preview_tooltip" />
+
+<div class="sectionMain" style="padding:7px"> 
+<h3 class="heading">{$xenOptions.pest_all_perday_name}</h3>	
+<table class="dataTable">
+    <tbody>
+
+    <tr class="dataRow">
+         <th>العضو المميز</th>
+        <th>الموضوع المميز</th>
+<xen:if is="{$xenOptions.altmiz_group1}">
+          <th>{$xenOptions.altmiz_group1}</th></xen:if>
+        </tr>
+        <tr class="dataRow">
+
+<td class="tavatarList" style="width:30%"><xen:if is="{$tamz.Tusr}">
+<xen:foreach loop="$tamz.Tusr" value="$usr">
+<xen:avatar user="$usr" size="m" img="true" />
+	<div class="visitorText">
+			<xen:username user="$usr" rich="true" />
+<div class="userTitle">{xen:helper userTitle, $usr}</div><br />		
+			<div class="stats">
+				<dl class="pairsJustified"><dt>{xen:phrase messages}: {xen:number $usr.message_count}</dt></dl>
+				<dl class="pairsJustified"><dt>{xen:phrase likes}: {xen:number $usr.like_count}</dt></dl>
+				<dl class="pairsJustified"><dt>{xen:phrase points}: {xen:number $usr.trophy_points}</dt></dl>
+			</div>
+		</div></xen:foreach>
+<xen:else />
+قريباً
+</xen:if>	
+
+</td>
+
+        <td class="tavatarList" style="width:40%"><xen:if is="{$tamz.Threads}">
+<xen:foreach loop="$tamz.Threads" value="$thread">
+<xen:avatar user="$thread" size="m" img="true" />
+<a class="PreviewTooltip" href="{xen:link threads/unread, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a>
+<br /><br />
+<dl class="pairsJustified"><dt>{xen:datetime $thread.post_date, html} - {xen:phrase views}: {$thread.view_count}  - 
+ {xen:phrase replies}: {$thread.reply_count}</dt></dl>
+<br />
+بقلم:&nbsp;<xen:username user="$thread" rich="true" /> 
+</xen:foreach><xen:else />
+قريباً
+</xen:if>
+</td>
+<xen:if is="{$xenOptions.altmiz_group1}">
+<td class="tavatarList" style="width:30%"><xen:if is="{$tamz.Tmod}">
+<xen:foreach loop="$tamz.Tmod" value="$mod">
+<xen:avatar user="$mod" size="m" img="true" />
+	<div class="visitorText">
+			<xen:username user="$mod" rich="true" />
+<div class="userTitle">{xen:helper userTitle, $mod}</div><br />		
+			<div class="stats">			
+				<dl class="pairsJustified"><dt>{xen:phrase messages}: {xen:number $mod.message_count}</dt></dl>
+				<dl class="pairsJustified"><dt>{xen:phrase likes}: {xen:number $mod.like_count}</dt></dl>
+				<dl class="pairsJustified"><dt>{xen:phrase points}: {xen:number $mod.trophy_points}</dt></dl>
+			</div>
+		</div>
+</xen:foreach>
+<xen:else />
+قريباً
+</xen:if>
+</td></xen:if>
+
+        </tr>
+<xen:if is="{$xenOptions.medal_on}">
+<tr class="dataRow">
+<td><img src="{$xenOptions.medal_1}" alt="" /></td>
+<td><img src="{$xenOptions.medal_3}" alt="" /></td>
+<xen:if is="{$xenOptions.altmiz_group1}">
+<td><img src="{$xenOptions.medal_2}" alt="" /></td></xen:if>
+</tr></xen:if>
+</tbody>
+</table>   
+</div></xen:if>]]></template>
+    <template title="tama_box.css" version_id="1" version_string="1.1"><![CDATA[table.dataTable {margin: 0;width:100%;}
+.heading {margin-bottom: 0;}
+.dataRow {text-align:center important!;}
+ .tavatarList li
+{	
+	margin: 5px 0;
+	overflow: hidden;
+	zoom: 1;	
+}
+	 .tavatarList .avatar
+	{		
+		margin-right: 5px;
+		float: left;
+		width: 96px;
+		height: 96px;		
+		width: auto;
+		height: auto;
+	}		
+	 .tavatarList .avatar img
+	{
+		width: 96px;
+		height: 96px;
+	}	
+	 .tavatarList .username
+	{		
+		font-size: 11pt;
+		margin-top: 2px;
+		display: block;		
+	}	
+	 .tavatarList .userTitle
+	{		
+		color: {xen:property mutedTextColor};		
+	}]]></template>
+    <template title="tama_boxx" version_id="1" version_string="1.1"><![CDATA[<xen:require css="tama_boxx.css" />
+<xen:include template="preview_tooltip" />
+<xen:if is="{$tamz.cansee}">
+<div class="sectionMain" style="padding:7px"> 	
+<table class="dataTable">
+    <tbody>
+    <tr class="dataRow">
+         <th>العضو المميز</th>
+        <th>الموضوع المميز</th>
+<xen:if is="{$xenOptions.altmiz_group1}">
+          <th>{$xenOptions.altmiz_group1}</th></xen:if>       
+        </tr>
+        <tr class="dataRow">
+<td class="tavatarList">
+<xen:foreach loop="$tamz.Tusr" value="$usr">
+<xen:avatar user="$usr" size="s" img="true" />
+<xen:username user="$usr" rich="true" />
+<div class="userTitle">{xen:helper userTitle, $usr}</div>	
+</xen:foreach>
+</td>
+        <td class="tavatarList">
+<xen:foreach loop="$tamz.Threads" value="$thread">
+<xen:avatar user="$thread" size="s" img="true" />
+<a class="PreviewTooltip" href="{xen:link threads/unread, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a>
+<br />
+<dl class="pairsJustified"><dt>{xen:datetime $thread.post_date, html}
+ بقلم:&nbsp;{$thread.username}</dt></dl>
+</xen:foreach>
+</td>
+<xen:if is="{$xenOptions.altmiz_group1}">
+<td class="tavatarList">
+<xen:foreach loop="$tamz.Tmod" value="$mod">
+<xen:avatar user="$mod" size="s" img="true" />
+<xen:username user="$mod" rich="true" />
+<div class="userTitle">{xen:helper userTitle, $mod}</div>
+</xen:foreach>
+</td></xen:if>
+        </tr>
+<xen:if is="{$xenOptions.medal_on}">
+<tr class="dataRow">
+<td><img src="{$xenOptions.medal_1}" alt="" /></td>
+<td><img src="{$xenOptions.medal_3}" alt="" /></td>
+<xen:if is="{$xenOptions.altmiz_group1}">
+<td><img src="{$xenOptions.medal_2}" alt="" /></td></xen:if>
+</tr></xen:if>
+</tbody>
+</table>   
+</div></xen:if>]]></template>
+    <template title="tama_boxx.css" version_id="1" version_string="1.1"><![CDATA[table.dataTable {margin: 0;width:100%;}
+.heading {margin-bottom: 0;}
+.dataRow {text-align:center important!;}
+ .tavatarList li
+{	
+	margin: 5px 0;
+	overflow: hidden;
+	zoom: 1;	
+}
+	 .tavatarList .avatar
+	{		
+		margin-right: 5px;
+		float: left;
+		width: 32px;
+		height: 32px;		
+		width: auto;
+		height: auto;
+	}		
+	 .tavatarList .avatar img
+	{
+		width: {xen:property sidebarAvatarListAvatar.width};
+		height: {xen:property sidebarAvatarListAvatar.height};
+	}	
+	 .tavatarList .username
+	{		
+		font-size: 11pt;
+		margin-top: 2px;
+		display: block;		
+	}	
+	 .tavatarList .userTitle
+	{		
+		color: {xen:property mutedTextColor};		
+	}]]></template>
+  </templates>
+  <bb_code_media_sites/>
+  <template_modifications/>
+</addon>
