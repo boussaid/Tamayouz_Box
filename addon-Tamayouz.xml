@@ -1,101 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="Tamayouz" title="صندوق التميز" version_string="2.0" version_id="2" url="http://www.shababadrar.net" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+<addon addon_id="Tamayouz" title="صندوق التميز" version_string="3.0" version_id="5" url="http://www.shababadrar.net" install_callback_class="Tamayouz_Install" install_callback_method="installer" uninstall_callback_class="Tamayouz_Install" uninstall_callback_method="uninstall">
   <admin_navigation>
-    <navigation navigation_id="Tamayouz" parent_navigation_id="options" display_order="8000" link="options/list/Tamayouz" admin_permission_id="option" debug_only="0" hide_no_children="0"/>
+    <navigation navigation_id="Tamayouz" parent_navigation_id="options" display_order="8000" link="options/list/tamayouz" admin_permission_id="option" debug_only="0" hide_no_children="0"/>
   </admin_navigation>
   <admin_permissions/>
   <admin_style_properties/>
   <admin_templates>
-    <template title="about_tam"><![CDATA[<div id="copyright" style="text-align:center;margin-top:20px;">
+    <template title="about_tam"><![CDATA[<xen:checkboxunit label="{$preparedOption.title}" hint="{$preparedOption.hint}">
+<xen:explain>{xen:raw $preparedOption.explain}</xen:explain>
+	<xen:html>
+<span style="text-align:center; margin: 0 auto;">
 <img src="styles/default/xenforo/smilies/thumbsup.png"  alt='' />&nbsp;  
-<a href="http://www.xf-ar.com/" target="_blank" class="Tooltip" title="برمجة بوسعيد مصطفى">:: XF-AR FORUM ::</a> &nbsp;
+<a href="https://github.com/boussaid" target="_blank" class="Tooltip" title="برمجة بوسعيد مصطفى">My github</a> &nbsp;
 <img src="styles/default/xenforo/smilies/thumbsup.png"  alt='' />
-</div>]]></template>
+</span>
+<xen:comment>
+<input type="hidden" name="{$listedFieldName}" value="{$preparedOption.option_id}" />
+		{xen:raw $editLink}
+		</xen:comment>
+</xen:html>	
+</xen:checkboxunit>]]></template>
   </admin_templates>
+  <admin_template_modifications/>
   <code_events/>
   <code_event_listeners>
-    <listener event_id="load_class_controller" execute_order="10" callback_class="Tamayouz_listen" callback_method="loclass" active="1" description=""/>
-    <listener event_id="template_create" execute_order="10" callback_class="Tamayouz_listen" callback_method="template_create" active="1" description=""/>
-    <listener event_id="template_hook" execute_order="10" callback_class="Tamayouz_listen" callback_method="template_tamayouz" active="1" description=""/>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="Tamayouz_Listen" callback_method="loclass" active="1" hint="XenForo_ControllerPublic_Forum" description="XenForo_ControllerPublic_Forum"/>
+    <listener event_id="template_create" execute_order="10" callback_class="Tamayouz_Listen" callback_method="template_create" active="1" hint="" description="Template pre-cache for Tamayouz Box"/>
+    <listener event_id="template_hook" execute_order="10" callback_class="Tamayouz_Listen" callback_method="template_tamayouz" active="1" hint="" description=""/>
   </code_event_listeners>
   <cron>
-    <entry entry_id="runTam" cron_class="tamayouz_CronEntry_Cache" cron_method="runCron" active="1"><![CDATA[{"day_type":"dow","dow":["-1"],"hours":["0","6","11","16","21"],"minutes":["0"]}]]></entry>
+    <entry entry_id="runTam" cron_class="Tamayouz_CronEntry_Cache" cron_method="runCron" active="1"><![CDATA[{"day_type":"dow","dow":["-1"],"hours":["0","3","6","9","11","14","16","19","21"],"minutes":["0"]}]]></entry>
   </cron>
   <email_templates/>
+  <email_template_modifications/>
   <optiongroups>
-    <group group_id="Tamayouz" display_order="1" debug_only="0"/>
+    <group group_id="tamayouz" display_order="1" debug_only="0"/>
     <option option_id="about_tamayouz" edit_format="template" data_type="string" can_backup="1">
       <default_value></default_value>
       <edit_format_params>about_tam</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="1000"/>
-    </option>
-    <option option_id="altmiz_group1" edit_format="textbox" data_type="string" can_backup="1">
-      <default_value>المشرف المميز</default_value>
-      <edit_format_params>size=20</edit_format_params>
-      <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="410"/>
+      <relation group_id="tamayouz" display_order="1000"/>
     </option>
     <option option_id="medal_1" edit_format="textbox" data_type="string" can_backup="1">
-      <default_value>styles/img/w1.gif</default_value>
+      <default_value>styles/img/user.png</default_value>
       <edit_format_params></edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="310"/>
+      <relation group_id="tamayouz" display_order="310"/>
     </option>
     <option option_id="medal_2" edit_format="textbox" data_type="string" can_backup="1">
-      <default_value>styles/img/w2.gif</default_value>
+      <default_value>styles/img/mod.png</default_value>
       <edit_format_params></edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="430"/>
+      <relation group_id="tamayouz" display_order="430"/>
     </option>
     <option option_id="medal_3" edit_format="textbox" data_type="string" can_backup="1">
-      <default_value>styles/img/w4.gif</default_value>
+      <default_value>styles/img/th.png</default_value>
       <edit_format_params></edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="220"/>
+      <relation group_id="tamayouz" display_order="220"/>
     </option>
     <option option_id="medal_on" edit_format="onoff" data_type="boolean" can_backup="1">
       <default_value>0</default_value>
       <edit_format_params></edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="30"/>
+      <relation group_id="tamayouz" display_order="30"/>
     </option>
     <option option_id="pest_all_perday_fourms_out" edit_format="textbox" data_type="string" can_backup="1">
       <default_value></default_value>
       <edit_format_params>size=30</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="110"/>
+      <relation group_id="tamayouz" display_order="110"/>
     </option>
     <option option_id="pest_all_perday_how" edit_format="radio" data_type="string" can_backup="1">
       <default_value>2</default_value>
       <edit_format_params>1=عدد الردود
 2=عدد المشاهدات</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="200"/>
-    </option>
-    <option option_id="pest_all_perday_modman" edit_format="callback" data_type="string" can_backup="1">
-      <default_value></default_value>
-      <edit_format_params>XenForo_Option_UserGroupChooser::renderSelect</edit_format_params>
-      <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="420"/>
+      <relation group_id="tamayouz" display_order="200"/>
     </option>
     <option option_id="pest_all_perday_name" edit_format="textbox" data_type="string" can_backup="1">
       <default_value>صندوق التميز التلقائي</default_value>
       <edit_format_params>size=30</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="100"/>
+      <relation group_id="tamayouz" display_order="100"/>
     </option>
     <option option_id="pest_all_perday_onoff" edit_format="onoff" data_type="boolean" can_backup="1">
       <default_value>1</default_value>
       <edit_format_params></edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="1"/>
+      <relation group_id="tamayouz" display_order="1"/>
     </option>
-    <option option_id="pest_all_perday_users" edit_format="callback" data_type="string" can_backup="1">
-      <default_value></default_value>
+    <option option_id="pest_all_perday_users" edit_format="callback" data_type="integer" can_backup="1">
+      <default_value>2</default_value>
       <edit_format_params>XenForo_Option_UserGroupChooser::renderSelect</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="300"/>
+      <relation group_id="tamayouz" display_order="300"/>
     </option>
     <option option_id="pest_all_theard_time" edit_format="select" data_type="string" can_backup="1">
       <default_value>43200</default_value>
@@ -107,22 +106,24 @@
 1209600= اسبوعين
 2419200= شهر</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="120"/>
+      <relation group_id="tamayouz" display_order="120"/>
     </option>
     <option option_id="tam_cut" edit_format="spinbox" data_type="numeric" can_backup="1">
-      <default_value>40</default_value>
+      <default_value>30</default_value>
       <edit_format_params>size=2
 max=80
-min=10</edit_format_params>
+min=10
+step=10</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="210"/>
+      <relation group_id="tamayouz" display_order="210"/>
     </option>
     <option option_id="tam_pos" edit_format="radio" data_type="string" can_backup="1">
       <default_value>20</default_value>
-      <edit_format_params>10=شكل 1 (معلومات مفصلة مع صورة كبيرة )
-20=شكل 2 (معلومات مختصرة مع صورة مصغرة )</edit_format_params>
+      <edit_format_params>10=شكل 1 (ٌResponsive)
+20=شكل 2 (معلومات مفصلة مع صورة مصغرة )
+25=شكل 3 (معلومات مفصلة مع صورة كبيرة )</edit_format_params>
       <sub_options></sub_options>
-      <relation group_id="Tamayouz" display_order="20"/>
+      <relation group_id="tamayouz" display_order="20"/>
     </option>
   </optiongroups>
   <permissions>
@@ -134,33 +135,31 @@ min=10</edit_format_params>
   </permissions>
   <phrases>
     <phrase title="admin_navigation_Tamayouz" version_id="1" version_string="1.1"><![CDATA[خيارات صندوق التميز]]></phrase>
+    <phrase title="beststaff" version_id="4" version_string="3.0"><![CDATA[المشرف المميز]]></phrase>
+    <phrase title="bestthread" version_id="4" version_string="3.0"><![CDATA[الموضوع المميز]]></phrase>
+    <phrase title="bestuser" version_id="4" version_string="3.0"><![CDATA[العضو المميز]]></phrase>
     <phrase title="cron_entry_runTam" version_id="1" version_string="1.1"><![CDATA[تحديث صندوق التميز التلقائي]]></phrase>
     <phrase title="option_about_tamayouz" version_id="1" version_string="1.0.0"><![CDATA[حقوق الهاك]]></phrase>
     <phrase title="option_about_tamayouz_explain" version_id="1" version_string="1.0.0"><![CDATA[]]></phrase>
-    <phrase title="option_altmiz_group1" version_id="1" version_string="1.0.0"><![CDATA[عنوان المجموعة الاولى]]></phrase>
-    <phrase title="option_altmiz_group1_explain" version_id="1" version_string="1.0.0"><![CDATA[الاسم الذي تريده يظهر فوق المجموعة الاولى مثال ( المشرف المميز)]]></phrase>
-    <phrase title="option_group_Tamayouz" version_id="1" version_string="1.1"><![CDATA[خيارات صندوق التميز الاوتوماتيكي]]></phrase>
-    <phrase title="option_group_Tamayouz_description" version_id="1" version_string="1.1"><![CDATA[]]></phrase>
-    <phrase title="option_medal_1" version_id="1" version_string="1.0.1"><![CDATA[صورة الوسام]]></phrase>
+    <phrase title="option_group_tamayouz" version_id="4" version_string="3.0"><![CDATA[خيارات صندوق التميز الاوتوماتيكي]]></phrase>
+    <phrase title="option_group_tamayouz_description" version_id="4" version_string="3.0"><![CDATA[]]></phrase>
+    <phrase title="option_medal_1" version_id="4" version_string="3.0"><![CDATA[صورة وسام العضو المميز]]></phrase>
     <phrase title="option_medal_1_explain" version_id="1" version_string="1.0.1"><![CDATA[]]></phrase>
-    <phrase title="option_medal_2" version_id="1" version_string="1.0.1"><![CDATA[صورة الوسام]]></phrase>
-    <phrase title="option_medal_2_explain" version_id="1" version_string="1.0.1"><![CDATA[]]></phrase>
-    <phrase title="option_medal_3" version_id="1" version_string="1.0.1"><![CDATA[صورة الوسام]]></phrase>
+    <phrase title="option_medal_2" version_id="4" version_string="3.0"><![CDATA[صورة وسام مجموعة المشرفين]]></phrase>
+    <phrase title="option_medal_2_explain" version_id="4" version_string="3.0"><![CDATA[المشرفين و المديرين يتم اختيارهم تلقائيا و عرضهم بمنطقة المشرف المميز]]></phrase>
+    <phrase title="option_medal_3" version_id="4" version_string="3.0"><![CDATA[صورة وسام الموضوع المميز]]></phrase>
     <phrase title="option_medal_3_explain" version_id="1" version_string="1.0.1"><![CDATA[]]></phrase>
     <phrase title="option_medal_on" version_id="1" version_string="1.0.1"><![CDATA[تفعيل الأوسمة ؟]]></phrase>
-    <phrase title="option_medal_on_explain" version_id="1" version_string="1.0.1"><![CDATA[عطل هذا الخيار إذا كنت لا تريد تفعيل الأوسمة]]></phrase>
+    <phrase title="option_medal_on_explain" version_id="4" version_string="3.0"><![CDATA[عند التفعيل، سيتم عرض صور الأوسمة المختارة بدل الصور الرمزية للعضو.]]></phrase>
     <phrase title="option_pest_all_perday_fourms_out" version_id="1" version_string="1.0.0"><![CDATA[اقسام لايشملها الموضوع المميز]]></phrase>
     <phrase title="option_pest_all_perday_fourms_out_explain" version_id="1" version_string="1.0.0"><![CDATA[ضع هنا ارقام  الاقسام التى لن يظهر منها مواضيع في التميز وافصل بين كل رقم والأخر بفاصله مثال<br />
 6,9,8]]></phrase>
     <phrase title="option_pest_all_perday_how" version_id="1" version_string="1.0.0"><![CDATA[الموضوع المميز]]></phrase>
     <phrase title="option_pest_all_perday_how_explain" version_id="1" version_string="1.0.0"><![CDATA[حدد الطريقه التى يتم اختيار الموضوع المميز فيها]]></phrase>
-    <phrase title="option_pest_all_perday_modman" version_id="1" version_string="1.0.0"><![CDATA[اختر مجموعة ( الاولى )]]></phrase>
-    <phrase title="option_pest_all_perday_modman_explain" version_id="1" version_string="1.0.0"><![CDATA[هذه الخانه مخصصه لرقم مجموعه المشرفين الإفتراضيه بالمنتدى وهي (4)
-في حال أردت استخدامها لمجموعه أخرى قم بتغيير عنوان المجموعة ( في حال كنت لست بحاجه لها اتركها فارغة)]]></phrase>
     <phrase title="option_pest_all_perday_name" version_id="1" version_string="1.0.0"><![CDATA[عنوان صندوق التميز]]></phrase>
     <phrase title="option_pest_all_perday_name_explain" version_id="1" version_string="1.0.0"><![CDATA[ضع هنا العنوان الذي تريد ظهوره في صندوق التميز مثال : المتميزون خلال اليوم]]></phrase>
     <phrase title="option_pest_all_perday_onoff" version_id="1" version_string="1.0.0"><![CDATA[تفعيل المنتج]]></phrase>
-    <phrase title="option_pest_all_perday_onoff_explain" version_id="1" version_string="1.0.0"><![CDATA[(نعم) لتشغيل الهاك وظهوره (لا) سوف يتم ايقافه بشكل كامل]]></phrase>
+    <phrase title="option_pest_all_perday_onoff_explain" version_id="4" version_string="3.0"><![CDATA[<a href="admin.php?user-group-permissions">لا تنسى إعطاء التصاريح اللازمة للمجموعات</a>]]></phrase>
     <phrase title="option_pest_all_perday_users" version_id="1" version_string="1.0.0"><![CDATA[اختر مجموعة الاعضاء]]></phrase>
     <phrase title="option_pest_all_perday_users_explain" version_id="1" version_string="1.0.0"><![CDATA[في العادة تكون رقم مجموعه الاعضاء هي ( 2 ) لكن في حال كان غير ذالك قم بتغييرها هنا]]></phrase>
     <phrase title="option_pest_all_theard_time" version_id="1" version_string="1.0.0"><![CDATA[وقت الموضوع والاعضاء المميزين]]></phrase>
@@ -170,203 +169,748 @@ min=10</edit_format_params>
     <phrase title="option_tam_pos" version_id="1" version_string="1.0.0"><![CDATA[طريقة العرض]]></phrase>
     <phrase title="option_tam_pos_explain" version_id="1" version_string="1.0.0"><![CDATA[حدد الطريقة التي تريد عرض صندوق التميز بها]]></phrase>
     <phrase title="permission_general_tmz_cansee" version_id="1" version_string="1.0.0"><![CDATA[يمكنه مشاهدة صندوق التميز]]></phrase>
+    <phrase title="soon" version_id="4" version_string="3.0"><![CDATA[قريبــــــــــــــــاً]]></phrase>
   </phrases>
   <route_prefixes/>
   <style_properties/>
   <templates>
-    <template title="tama_box" version_id="1" version_string="1.1"><![CDATA[<xen:if is="{$tamz.cansee}">
-<xen:require css="tama_box.css" />
-<xen:include template="preview_tooltip" />
+    <template title="bestA" version_id="4" version_string="3.0"><![CDATA[<xen:if is="{$tamz.cansee}">
+<xen:require css="bestA.css" />
+<ol class="featuredList">
 
-<div class="sectionMain" style="padding:7px"> 
-<h3 class="heading">{$xenOptions.pest_all_perday_name}</h3>	
-<table class="dataTable">
-    <tbody>
-
-    <tr class="dataRow">
-         <th>العضو المميز</th>
-        <th>الموضوع المميز</th>
-<xen:if is="{$xenOptions.altmiz_group1}">
-          <th>{$xenOptions.altmiz_group1}</th></xen:if>
-        </tr>
-        <tr class="dataRow">
-
-<td class="tavatarList" style="width:30%"><xen:if is="{$tamz.Tusr}">
-<xen:foreach loop="$tamz.Tusr" value="$usr">
-<xen:avatar user="$usr" size="m" img="true" />
-	<div class="visitorText">
-			<xen:username user="$usr" rich="true" />
-<div class="userTitle">{xen:helper userTitle, $usr}</div><br />		
-			<div class="stats">
-				<dl class="pairsJustified"><dt>{xen:phrase messages}: {xen:number $usr.message_count}</dt></dl>
-				<dl class="pairsJustified"><dt>{xen:phrase likes}: {xen:number $usr.like_count}</dt></dl>
-				<dl class="pairsJustified"><dt>{xen:phrase points}: {xen:number $usr.trophy_points}</dt></dl>
+	<li class="featured"><xen:if is="{$tamz.Tusr}">
+		<xen:foreach loop="$tamz.Tusr" value="$usr">
+			<div class="fImage">
+			<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_1}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$usr" size="m" img="true" />
+				</xen:if>
 			</div>
-		</div></xen:foreach>
-<xen:else />
-قريباً
-</xen:if>	
-
-</td>
-
-        <td class="tavatarList" style="width:40%"><xen:if is="{$tamz.Threads}">
-<xen:foreach loop="$tamz.Threads" value="$thread">
-<xen:avatar user="$thread" size="m" img="true" />
-<a class="PreviewTooltip" href="{xen:link threads/unread, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a>
-<br /><br />
-<dl class="pairsJustified"><dt>{xen:datetime $thread.post_date, html} - {xen:phrase views}: {$thread.view_count}  - 
- {xen:phrase replies}: {$thread.reply_count}</dt></dl>
-<br />
-بقلم:&nbsp;<xen:username user="$thread" rich="true" /> 
-</xen:foreach><xen:else />
-قريباً
+		<div class="fInfo">
+			<h3 class="title"><xen:username user="$usr" rich="true" class="username" /></h3>
+			<div class="tagLine muted">{xen:helper userTitle, $usr}</div>
+			<div class="userBlurb">{xen:helper userBlurb, $usr, 0}</div>
+			<a href="{xen:link members, $uer}">{xen:phrase profile_page}</a>
+			<div class="details muted">
+			{xen:phrase messages}: <a href="{xen:link search/member, '', 'user_id={$usr.user_id}'}" class="concealed" rel="nofollow">{xen:number $usr.message_count}</a>،
+			{xen:phrase likes}:{xen:number $usr.like_count}،
+			{xen:phrase points}: <a href="{xen:link members/trophies, $usr}" class="concealed OverlayTrigger">{xen:number $usr.trophy_points}</a>.
+			</div>
+		</div></xen:foreach><xen:else />
+<h3>{xen:phrase soon}</h3>
 </xen:if>
-</td>
-<xen:if is="{$xenOptions.altmiz_group1}">
-<td class="tavatarList" style="width:30%"><xen:if is="{$tamz.Tmod}">
-<xen:foreach loop="$tamz.Tmod" value="$mod">
-<xen:avatar user="$mod" size="m" img="true" />
-	<div class="visitorText">
-			<xen:username user="$mod" rich="true" />
-<div class="userTitle">{xen:helper userTitle, $mod}</div><br />		
-			<div class="stats">			
-				<dl class="pairsJustified"><dt>{xen:phrase messages}: {xen:number $mod.message_count}</dt></dl>
-				<dl class="pairsJustified"><dt>{xen:phrase likes}: {xen:number $mod.like_count}</dt></dl>
-				<dl class="pairsJustified"><dt>{xen:phrase points}: {xen:number $mod.trophy_points}</dt></dl>
-			</div>
+	</li>
+
+	<li class="featured"><xen:if is="{$tamz.Threads}">
+	<xen:foreach loop="$tamz.Threads" value="$thread">
+		<div class="fImage">
+		<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_3}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$thread" size="m" img="true" />
+				</xen:if>
 		</div>
-</xen:foreach>
-<xen:else />
-قريباً
+		<div class="fInfo">
+			<h3 class="title">{xen:helper threadPrefix, $thread}<a class="PreviewTooltip" href="{xen:link threads/unread, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a></h3>
+			<div class="tagLine muted">{xen:phrase thread_starter}: <xen:username user="$thread" rich="true" class="NoOverlay" /></div>
+			<div class="tagLine muted">{xen:datetime $thread.post_date, html}</div>
+			<div class="details muted">
+					     {xen:phrase views}: {$thread.view_count}،
+					     {xen:phrase replies}: {$thread.reply_count}.
+			</div>
+		</div></xen:foreach><xen:else />
+<h3>{xen:phrase soon}</h3>
 </xen:if>
-</td></xen:if>
+	</li>
+	<li class="featured"><xen:if is="{$tamz.Tmod}">
+		<xen:foreach loop="$tamz.Tmod" value="$usr">
+			<div class="fImage">
+			<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_2}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$usr" size="m" img="true" />
+				</xen:if>
+			</div>
+		<div class="fInfo">
+			<h3 class="title"><xen:username user="$usr" rich="true" /></h3>
+			<h4 class="userTitle">{xen:helper userTitle, $usr}</h4>
+			<div class="userBlurb">{xen:helper userBlurb, $usr, 0}</div>
+			<a href="{xen:link members, $uer}">{xen:phrase profile_page}</a>
+			<div class="details muted">
+			{xen:phrase messages}: <a href="{xen:link search/member, '', 'user_id={$usr.user_id}'}" class="concealed" rel="nofollow">{xen:number $usr.message_count}</a>،
+			{xen:phrase likes}:{xen:number $usr.like_count}،
+			{xen:phrase points}: <a href="{xen:link members/trophies, $usr}" class="concealed OverlayTrigger">{xen:number $usr.trophy_points}</a>.
+			</div>
+		</div></xen:foreach><xen:else />
+<h3>{xen:phrase soon}</h3>
+</xen:if>
+	</li>
 
-        </tr>
-<xen:if is="{$xenOptions.medal_on}">
-<tr class="dataRow">
-<td><img src="{$xenOptions.medal_1}" alt="" /></td>
-<td><img src="{$xenOptions.medal_3}" alt="" /></td>
-<xen:if is="{$xenOptions.altmiz_group1}">
-<td><img src="{$xenOptions.medal_2}" alt="" /></td></xen:if>
-</tr></xen:if>
-</tbody>
-</table>   
-</div></xen:if>]]></template>
-    <template title="tama_box.css" version_id="1" version_string="1.1"><![CDATA[table.dataTable {margin: 0;width:100%;}
-.heading {margin-bottom: 0;}
-.dataRow {text-align:center important!;}
- .tavatarList li
-{	
-	margin: 5px 0;
+</ol></xen:if>]]></template>
+    <template title="bestA.css" version_id="4" version_string="3.0"><![CDATA[.featuredList
+{
 	overflow: hidden;
-	zoom: 1;	
+	margin: 0 auto;
+	width: 100%;
 }
-	 .tavatarList .avatar
-	{		
-		margin-right: 5px;
+
+	.featuredList .featured
+	{
+		{xen:property secondaryContent}
 		float: left;
-		width: 96px;
-		height: 96px;		
+		margin: 0 15px 5px 0;
+		box-sizing: border-box;
+		width: 300px;
+		max-width: 100%;
+		padding: 5px;
+		box-shadow: 1px 1px 3px rgba(0,0,0, 0.25);
+		border: 1px solid {xen:property primaryLighter};
+		border-radius: 5px; 
+	}
+		
+		.featuredList .featured .prefix
+		{
+			max-width: 100%;
+			box-sizing: border-box;
+			overflow: hidden;
+			word-wrap: normal;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			vertical-align: bottom;
+		}
+
+		.featuredList .featured .fInfo
+		{
+			height: {xen:calc '96 + {xen:property avatar.padding-top} + {xen:property avatar.padding-bottom} + {xen:property avatar.border-top-width} + {xen:property avatar.border-bottom-width}'}px;
+			padding-left: 5px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.featuredList .featured .fImage
+		{
+			float: left;
+		}
+
+			.featuredList .featured .fImage img
+			{
+				display: block;
+				width: 96px;
+				height: 96px;
+			}
+			
+			.featuredList .featured .fImage .fIcon img
+			{
+				{xen:property avatar}
+			}
+
+		.featuredList .featured .title
+		{
+			font-weight: bold;
+			font-size: 12px;
+			line-height: 18px;
+			max-height: 36px;
+			overflow: hidden;
+			padding: 3px 0;
+		}
+
+		.featuredList .featured .tagLine
+		{
+			font-size: 11px;
+			line-height: 14px;
+			max-height: 28px;
+			overflow: hidden;
+		}
+
+		.featuredList .featured .details
+		{
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			margin-top: 10px;
+			font-size: 11px;
+			white-space: nowrap;
+			word-wrap: normal;
+			overflow: hidden;
+			max-width: 100%;
+			text-overflow: ellipsis;
+		}
+		.featuredList .featured .status
+		{
+			font-size: 11px;
+			font-style: italic;
+			margin: 3px 0;
+		}]]></template>
+    <template title="bestB" version_id="4" version_string="3.0"><![CDATA[<xen:if is="{$tamz.cansee}">
+<xen:require css="bestB.css" />
+<div class="sectionMain mostLikedPosts">
+<div class="most">
+<h2 class="subHeading">{xen:phrase bestuser}</h2>
+<xen:if is="{$tamz.Tusr}"> 
+		<xen:foreach loop="$tamz.Tusr" value="$usr">	
+	<ol>
+		   
+			<li class="likedPost">
+				<div class="primaryContent">
+					
+					<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_1}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$usr" size="m" img="true" />
+				</xen:if>
+					<h3><xen:username user="$usr" rich="true" class="username" /></h3>
+
+                          <div class="userTitle">{xen:helper userTitle, $usr}</div>
+                          <br />
+                          <xen:if is="{$usr.status}">
+                          <blockquote class="status">{xen:helper bodytext, $usr.status}</blockquote>
+                          <xen:else />
+                          {xen:phrase member_since}: {xen:date $usr.register_date}
+                          </xen:if>
+                         <dl class="secondaryContent pairsInline meta">
+					     <dt>{xen:phrase messages}:</dt> <dd><a href="{xen:link search/member, '', 'user_id={$usr.user_id}'}" class="concealed" rel="nofollow">{xen:number $usr.message_count}</a></dd>
+					     <dt>{xen:phrase likes}:</dt> <dd>{xen:number $usr.like_count}</dd>
+					     <dt>{xen:phrase points}:</dt>  <dd><a href="{xen:link members/trophies, $usr}" class="concealed OverlayTrigger">{xen:number $usr.trophy_points}</a></dd>
+					</dl>
+				</div>
+			</li>
+		
+		
+	</ol>
+	
+	<div class="sectionFooter"><a href="{xen:link members, $usr}">{xen:phrase profile_page}</a></div>
+	</xen:foreach><xen:else />
+<h3>{xen:phrase soon}</h3>
+<div class="sectionFooter">{xen:phrase soon}</div>
+</xen:if>
+</div>
+<div class="most">	
+	<h2 class="subHeading">{xen:phrase bestthread}</h2>
+	<xen:if is="{$tamz.Threads}">    
+		<xen:foreach loop="$tamz.Threads" value="$thread">
+	<ol>
+		
+		<li class="likedPost">
+			<div class="primaryContent">
+				<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_3}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$thread" size="m" img="true" />
+				</xen:if>
+				<h3><a class="PreviewTooltip" href="{xen:link threads, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a>
+									</h3>
+                          <div class="userTitle">{xen:datetime $thread.post_date, html}</div>
+                           <br />{xen:phrase thread_starter}: <xen:username user="$thread" rich="true" />
+                         <dl class="secondaryContent pairsInline meta">
+					     <dt>{xen:phrase views}:</dt> <dd>{$thread.view_count}</dd>
+					     <dt>{xen:phrase replies}:</dt> <dd>{$thread.reply_count}</dd>
+					</dl>
+				</div>
+			</li>
+		
+		
+	</ol>
+	
+	<div class="sectionFooter"><a href="{xen:link threads/unread, $thread}" title="{xen:phrase go_to_first_unread_message}">{xen:phrase go_to_first_unread_message}&#8595;</a></div>
+</xen:foreach><xen:else />
+<h3>{xen:phrase soon}</h3>
+<div class="sectionFooter">{xen:phrase soon}</div>
+</xen:if>
+</div>
+
+<div class="most">
+<h2 class="subHeading">{xen:phrase beststaff}</h2>
+<xen:if is="{$tamz.Tmod}">
+<xen:foreach loop="$tamz.Tmod" value="$mod">	
+	<ol>
+		<li class="likedPost">
+				<div class="primaryContent">
+				<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_2}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$mod" size="m" img="true" />
+				</xen:if>
+				<h3><xen:username user="$mod" rich="true" /></h3>
+
+                          <div class="userTitle">{xen:helper userTitle, $mod}</div>
+                          <br />
+                          <xen:if is="{$mod.status}">
+                          <blockquote class="status">{xen:helper bodytext, $mod.status}</blockquote>
+                          <xen:else />
+                          {xen:phrase member_since}: {xen:date $mod.register_date}
+                          </xen:if>
+                         <dl class="secondaryContent pairsInline meta">
+					     <dt>{xen:phrase messages}:</dt> <dd><a href="{xen:link search/member, '', 'user_id={$mod.user_id}'}" class="concealed" rel="nofollow">{xen:number $mod.message_count}</a></dd>
+					     <dt>{xen:phrase likes}:</dt> <dd>{xen:number $mod.like_count}</dd>
+					     <dt>{xen:phrase points}:</dt>  <dd><a href="{xen:link members/trophies, $mod}" class="concealed OverlayTrigger">{xen:number $mod.trophy_points}</a></dd>
+					</dl>
+				</div>
+			</li>		
+	</ol>
+	
+	<div class="sectionFooter"><a href="{xen:link members, $mod}">{xen:phrase profile_page}</a></div>
+</xen:foreach><xen:else />
+<h3>{xen:phrase soon}</h3>
+<div class="sectionFooter">{xen:phrase soon}</div>
+</xen:if>
+
+</div>
+</div><br /></xen:if>]]></template>
+    <template title="bestB.css" version_id="4" version_string="3.0"><![CDATA[.mostLikedPosts
+{
+	box-sizing: border-box;
+	display: table;
+	width: 100%; 
+	word-wrap: normal;
+}
+.most
+{
+	width: 320px; max-width: 100%;
+	display: table-cell; box-sizing: border-box;
+	vertical-align: middle;
+	height: {xen:calc '96 + {xen:property avatar.padding-top} + {xen:property avatar.padding-bottom} + {xen:property avatar.border-top-width} + {xen:property avatar.border-bottom-width}'}px;
+}
+.most2
+{
+	width: 40%; max-width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	margin: 0 2px 0 2px !important;
+}
+	.mostLikedPosts .avatar
+	{
+		float: left;
+		margin-right: 10px;
+	}
+	
+		.mostLikedPosts .avatar img, .mostLikedPosts .fIcon img
+		{
+			width: 64px;
+			height: 64px;
+		}
+		.mostLikedPosts .fIcon img
+			{
+				{xen:property avatar}
+			}
+
+	.mostLikedPosts .likedPost
+	{
+		position: relative;
+	}
+	
+	.mostLikedPosts .primaryContent
+	{
+		padding: 0;
+		padding-top: 10px;
+	}
+	
+	.mostLikedPosts h3
+	{
+		font-size: 12pt;
+		margin-bottom: 5px;
+	}
+	.mostLikedPosts h3 .prefix
+		{
+			max-width: 100%;
+			font-size: 8pt;
+			box-sizing: border-box;
+			overflow: hidden;
+			word-wrap: normal;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			
+		}
+	
+	.mostLikedPosts .likes
+	{
+		display: block;
+		position: absolute;
+		right: 0px;
+		top: 10px;
+		width: 24px;
+		height: 24px;
+		line-height: 24px;
+		text-align: center;
+		-webkit-border-radius: 13px; -moz-border-radius: 13px; -khtml-border-radius: 13px; border-radius: 13px;
+		font-weight: bold;
+		background: {xen:property primaryLighterStill};
+		border: 1px solid {xen:property primaryLighter};
+	}
+	
+		.mostLikedPosts .likes:hover
+		{
+			background-color: {xen:property secondaryLightest};
+			border-color: {xen:property secondaryLighter};
+			color: {xen:property secondaryDark}
+			text-decoration: none;
+			-webkit-box-shadow: 0 0 10px {xen:property secondaryMedium}; -moz-box-shadow: 0 0 10px {xen:property secondaryMedium}; -khtml-box-shadow: 0 0 10px {xen:property secondaryMedium}; box-shadow: 0 0 10px {xen:property secondaryMedium};
+		}
+	
+	.mostLikedPosts .meta
+	{
+		font-size: 11px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		/*margin-left: 80px;*/
+		margin-bottom: -1px;
+		margin-top: 10px;
+		border: 1px solid {xen:property primaryLighterStill};
+		/*border-right: none;*/
+		-webkit-border-top-left-radius: 10px; -moz-border-radius-topleft: 10px; -khtml-border-top-left-radius: 10px; border-top-left-radius: 10px;
+		-webkit-border-top-right-radius: 10px; -moz-border-radius-topright: 10px; -khtml-border-top-right-radius: 10px; border-top-right-radius: 10px;
+	}
+	
+		.mostLikedPosts .meta dd
+		{
+			margin-right: 10px;
+		}
+		
+			.mostLikedPosts .meta dd strong
+			{
+				font-weight: bold;
+			}]]></template>
+    <template title="bestC" version_id="4" version_string="3.0"><![CDATA[<xen:if is="{$tamz.cansee}">
+<xen:require css="bestC.css" />
+<div class="bestPerDay section sectionMain visibleResponsiveFull" style="padding:3px">
+	<ol class="bestPerDayItems">
+		<li class="bestPerDayItem visible">
+			<div class="listBlock bestMember">
+				<div class="section visitorPanel">
+					<div class="secondaryContent">
+
+		<h3 class="besttit">{xen:phrase bestuser}</h3>
+
+					
+					<xen:if is="{$tamz.Tusr}">
+						<xen:foreach loop="$tamz.Tusr" value="$usr">
+							<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_1}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$usr" size="m" img="true" />
+				</xen:if>
+							<div class="visitorText">
+								<h2><xen:username user="$usr" rich="true" /></h2>
+<div class="userTitle">{xen:helper userTitle, $usr}</div>			
+								<div class="stats">
+								<dl class="pairsJustified"><dt>{xen:phrase messages}:</dt> <dd>{xen:number $usr.message_count}</dd></dl>
+				                                <dl class="pairsJustified"><dt>{xen:phrase likes}: </dt><dd>{xen:number $usr.like_count}</dd></dl>
+				                                <dl class="pairsJustified"><dt>{xen:phrase points}: </dt><dd>{xen:number $usr.trophy_points}</dd></dl>
+								</div>
+								
+							</div>
+						</xen:foreach>
+<xen:else />
+<h2>{xen:phrase soon}</h2>
+</xen:if>
+					<div style="clear: both;"></div></div>
+				</div>
+			</div>
+			<div class="listBlock bestThread">
+				<div class="section visitorPanel">
+					<div class="secondaryContent" style="margin-left: 5px; margin-right: 5px;">
+						
+					<h3 class="besttit">{xen:phrase bestthread}</h3>
+					
+					<xen:if is="{$tamz.Threads}">
+						<xen:foreach loop="$tamz.Threads" value="$thread">
+							<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_3}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$thread" size="m" img="true" />
+				</xen:if>
+							<div class="visitorText">
+								<h2><a class="PreviewTooltip" href="{xen:link threads/unread, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a>
+									</h2>		
+								<div class="stats">
+								{xen:datetime $thread.post_date, html}
+									<dl class="pairsJustified"><dt>{xen:phrase thread_starter}:</dt> <dd><xen:username user="$thread" rich="true" /></dd></dl>
+									<dl class="pairsJustified"><dt>{xen:phrase views}:</dt> <dd>{$thread.view_count}</dd></dl>
+									<dl class="pairsJustified"><dt>{xen:phrase replies}:</dt> <dd>{$thread.reply_count}</dd></dl>
+								</div>
+								
+							</div></xen:foreach>
+<xen:else />
+<h2>{xen:phrase soon}</h2>
+</xen:if>						
+					<div style="clear: both;"></div></div>
+				</div>
+			</div>
+			<div class="listBlock bestMaleMod">
+				<div class="section visitorPanel">
+					<div class="secondaryContent">
+						
+					<h3 class="besttit">{xen:phrase beststaff}</h3>
+					
+					<xen:if is="{$tamz.Tmod}">
+						<xen:foreach loop="$tamz.Tmod" value="$mod">
+							<xen:if is="{$xenOptions.medal_on}">
+				<span class="fIcon"><img class="avatar" src="{$xenOptions.medal_2}" alt="" /></span>
+				<xen:else />
+				<xen:avatar user="$mod" size="m" img="true" />
+				</xen:if>
+							<div class="visitorText">
+								<h2><xen:username user="$mod" rich="true" /></h2>		
+								<div class="userTitle">{xen:helper userTitle, $mod}</div>
+                       <div class="stats">			
+				<dl class="pairsJustified"><dt>{xen:phrase messages}:</dt> <dd>{xen:number $mod.message_count}</dd></dl>
+				<dl class="pairsJustified"><dt>{xen:phrase likes}:</dt> <dd>{xen:number $mod.like_count}</dd></dl>
+				<dl class="pairsJustified"><dt>{xen:phrase points}:</dt> <dd>{xen:number $mod.trophy_points}</dd></dl>
+			</div>
+								
+							</div></xen:foreach>
+<xen:else />
+<h2>{xen:phrase soon}</h2>
+</xen:if>						
+					<div style="clear: both;"></div></div>
+				</div>
+			</div>
+			
+		</li>
+	</ol>
+</div></xen:if>]]></template>
+    <template title="bestC.css" version_id="4" version_string="3.0"><![CDATA[/* --- best_per_day_list.css --- */
+@media only screen and (max-width: 960px), only screen and (max-device-width: 960px), only screen and (max-width: 960px), only screen and (max-device-width: 960px)
+{
+ .bestPerDay .visitorPanel .avatar a {
+     float: right;
+     } 
+}
+.besttit {
+font-size: 12px !important;
+color: #026106 !important;
+font-weight: bold;
+background: #FFCD76 url('styles/shababadrar3d/xenforo/bbcode-grad.png') repeat-x top;
+
+padding: 6px 0px !important;
+margin-top: -5px;
+
+}
+
+.listBlock dl.pairsJustified {
+overflow: hidden;
+zoom: 1;
+border: 1px solid rgb(202, 241, 241);
+padding: 2px 7px;
+margin-top: 2px;
+background-color: rgba(255, 255, 255, 0.52);
+border-radius: 5px;
+}
+
+.bestPerDay .visitorPanel .avatar
+	{
+		margin-right: 5px;
+                float: left;
 		width: auto;
 		height: auto;
-	}		
-	 .tavatarList .avatar img
-	{
-		width: 96px;
-		height: 96px;
-	}	
-	 .tavatarList .username
-	{		
-		font-size: 11pt;
-		margin-top: 2px;
-		display: block;		
-	}	
-	 .tavatarList .userTitle
-	{		
-		color: {xen:property mutedTextColor};		
-	}]]></template>
-    <template title="tama_boxx" version_id="1" version_string="1.1"><![CDATA[<xen:require css="tama_boxx.css" />
-<xen:include template="preview_tooltip" />
-<xen:if is="{$tamz.cansee}">
-<div class="sectionMain" style="padding:7px"> 	
-<table class="dataTable">
-    <tbody>
-    <tr class="dataRow">
-         <th>العضو المميز</th>
-        <th>الموضوع المميز</th>
-<xen:if is="{$xenOptions.altmiz_group1}">
-          <th>{$xenOptions.altmiz_group1}</th></xen:if>       
-        </tr>
-        <tr class="dataRow">
-<td class="tavatarList">
-<xen:foreach loop="$tamz.Tusr" value="$usr">
-<xen:avatar user="$usr" size="s" img="true" />
-<xen:username user="$usr" rich="true" />
-<div class="userTitle">{xen:helper userTitle, $usr}</div>	
-</xen:foreach>
-</td>
-        <td class="tavatarList">
-<xen:foreach loop="$tamz.Threads" value="$thread">
-<xen:avatar user="$thread" size="s" img="true" />
-<a class="PreviewTooltip" href="{xen:link threads/unread, $thread}" data-previewUrl="{xen:link threads/preview, $thread}">{xen:helper snippet, $thread.title, {$xenOptions.tam_cut}}</a>
-<br />
-<dl class="pairsJustified"><dt>{xen:datetime $thread.post_date, html}
- بقلم:&nbsp;{$thread.username}</dt></dl>
-</xen:foreach>
-</td>
-<xen:if is="{$xenOptions.altmiz_group1}">
-<td class="tavatarList">
-<xen:foreach loop="$tamz.Tmod" value="$mod">
-<xen:avatar user="$mod" size="s" img="true" />
-<xen:username user="$mod" rich="true" />
-<div class="userTitle">{xen:helper userTitle, $mod}</div>
-</xen:foreach>
-</td></xen:if>
-        </tr>
-<xen:if is="{$xenOptions.medal_on}">
-<tr class="dataRow">
-<td><img src="{$xenOptions.medal_1}" alt="" /></td>
-<td><img src="{$xenOptions.medal_3}" alt="" /></td>
-<xen:if is="{$xenOptions.altmiz_group1}">
-<td><img src="{$xenOptions.medal_2}" alt="" /></td></xen:if>
-</tr></xen:if>
-</tbody>
-</table>   
-</div></xen:if>]]></template>
-    <template title="tama_boxx.css" version_id="1" version_string="1.1"><![CDATA[table.dataTable {margin: 0;width:100%;}
-.heading {margin-bottom: 0;}
-.dataRow {text-align:center important!;}
- .tavatarList li
-{	
-	margin: 5px 0;
-	overflow: hidden;
-	zoom: 1;	
+	}
+
+.bestPerDay .visitorPanel .fIcon img
+			{
+				{xen:property avatar} 
+				width: 96px;
+				height: 96px;
+			}
+.bestPerDay
+{
+	position: relative;
+	zoom: 1;
 }
-	 .tavatarList .avatar
-	{		
-		margin-right: 5px;
-		float: left;
-		width: 32px;
-		height: 32px;		
-		width: auto;
-		height: auto;
-	}		
-	 .tavatarList .avatar img
+
+/** column style and width **/
+
+.bestPerDay .sectionHeaders,
+.bestPerDayItem
+{
+	display: table;
+	max-width: 100%;
+	width: 100%; box-sizing: border-box;
+	word-wrap: normal;
+}
+
+	.bestPerDay .sectionHeaders dt,
+	.bestPerDay .sectionHeaders dd,
+	.bestPerDayItem .listBlock
 	{
-		width: {xen:property sidebarAvatarListAvatar.width};
-		height: {xen:property sidebarAvatarListAvatar.height};
-	}	
-	 .tavatarList .username
-	{		
-		font-size: 11pt;
+		display: table-cell;
+		vertical-align: middle;
+	}
+		
+		.bestPerDay .bestMember,
+		.bestPerDay .bestMaleMod
+		{
+			width: 30%;box-sizing: border-box;max-width: 100%;
+			text-align: center;
+		}
+                .bestPerDay .bestThread
+		{
+			width: 40%;box-sizing: border-box;max-width: 100%;
+			text-align: center;
+		}
+
+/* column headers */
+
+.bestPerDay .sectionHeaders
+{	
+	font-size: 11px;
+color: #6d3f03;
+background: #f9d9b0 url('styles/default/xenforo/gradients/category-23px-light.png') repeat-x top;
+padding:5px 10px;
+margin:3px auto 0;
+border-top: 1px solid #f9d9b0;
+border-bottom: 1px solid #f9bc6d;
+
+	
+	padding:0;
+}
+
+	.bestPerDay .sectionHeaders dt span
+	{
+		display: none !important;
+	}
+		
+	.bestPerDay .sectionHeaders a
+	{
+		display: block;
+		color: #6d3f03;
+		outline: none;
+	}
+	
+	.bestPerDay .sectionHeaders a:hover
+	{
+		text-decoration: none;
+	}
+			
+	.bestPerDay .sectionHeaders dd a[href]:hover
+	{
+		text-decoration: none;
+background-color: #fff4e5;
+
+	}
+		
+	.bestPerDay .sectionHeaders .bestMember a,
+	.bestPerDay .sectionHeaders .bestThread a,
+	.bestPerDay .sectionHeaders .bestMaleMod a
+	{
+		text-align: center;
+		width: 50%;
+		white-space: nowrap;
+	}
+	
+		.bestPerDay .sectionHeaders a span
+		{
+			padding:5px 10px;
+			display: block;
+		}
+		
+/** IE <8 **/
+.bestPerDay .sectionHeaders,
+.bestPerDayItem                { *display: block; _vertical-align: bottom; }
+.bestPerDay .sectionHeaders dt,
+.bestPerDay .sectionHeaders dd,
+.bestPerDayItem .listBlock     { *display: block; *float: left; }
+.bestPerDayItem .listBlock     { _height: 52px; *min-height: 52px; } /* todo: should be calculation */	
+.bestPerDay .bestMember              { *width: 30%; }
+.bestPerDay .bestThread             { *width: 40%; }	
+.bestPerDay .bestMaleMod          { *width: 30%; }
+.bestPerDay .sectionHeaders dt,
+.bestPerDay .sectionHeaders dd { *padding:5px 0; }
+.bestPerDay .sectionHeaders a,
+.bestPerDay .sectionHeaders a span { *display: inline !important; *float: none !important; }
+
+/* items in best per day list */
+
+/* individual best per day list item */
+	
+/** main **/
+
+.bestPerDayItem
+{
+	background-color: rgb(252, 252, 255);
+	
+	border-bottom: 1px solid #d7edfc;
+}
+
+	/* sections, section widths */
+	
+	.bestPerDayItem .bestMember,		
+	.bestPerDayItem .bestMaleMod
+	{
+		background: url('styles/default/xenforo/gradients/category-23px-light.png') repeat-x top;
+	}
+		
+		
+/* user panel */
+
+.bestPerDay .visitorPanel
+{
+	overflow: hidden; zoom: 1;
+}
+
+	.bestPerDay .visitorPanel .visitorText a
+	{
+		font-weight: bold;
+/*padding-right: 18px;
+background: transparent url('styles/default/xenforo/widgets/discussion-new.png') no-repeat left center;*/
+
+	}
+
+	.bestPerDay .visitorPanel h2 .muted
+	{
+		display: none;
+	}
+	
+	.bestPerDay .visitorPanel .username
+	{
+		font-weight: bold; font-size: 11pt;
+
+	}
+	
+	.bestPerDay .visitorPanel .stats
+	{
 		margin-top: 2px;
-		display: block;		
-	}	
-	 .tavatarList .userTitle
-	{		
-		color: {xen:property mutedTextColor};		
+
+	}
+	
+	.bestPerDay .visitorPanel .stats .pairsJustified
+	{
+		line-height: normal;
+	}
+	
+/* generic bestPerDay blocks */
+		
+.bestPerDay .section .primaryContent   h3,
+.bestPerDay .section .secondaryContent h3
+{
+	font-size: 12pt;
+color: #6cb2e4;
+padding-bottom: 2px;
+margin-bottom: 5px;
+border-bottom: 1px solid #d7edfc;
+
+}
+
+.bestPerDay .section .primaryContent   h3 a,
+.bestPerDay .section .secondaryContent h3 a
+{
+	font-size: 12pt;
+color: #6cb2e4;
+}
+
+.bestPerDay .section .secondaryContent .footnote,
+.bestPerDay .section .secondaryContent .minorHeading
+{
+	color: #6cb2e4;
+margin-top: 5px;
+
+}
+
+	.bestPerDay .section .secondaryContent .minorHeading a
+	{
+		color: #6cb2e4;
 	}]]></template>
   </templates>
+  <public_template_modifications/>
   <bb_code_media_sites/>
-  <template_modifications/>
+  <bb_codes/>
 </addon>
